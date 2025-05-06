@@ -21,7 +21,7 @@ public class RazorpayController {
 
     @Autowired
     private final RazorpayService razorpayService;
-
+// this is the method to create order on Razorpay
     @PostMapping("/createOrder")
     public ResponseEntity<?> orderCreation(@RequestBody StudentOrder studentOrder) {
         try {
