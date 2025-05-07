@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RazorpayService {
@@ -33,5 +35,10 @@ public class RazorpayService {
         studentOrder.setOrderStatus("status");
 
         return repository.save(studentOrder);
+    }
+
+
+    public List<StudentOrder> getAll(){
+        return repository.findAll();
     }
 }

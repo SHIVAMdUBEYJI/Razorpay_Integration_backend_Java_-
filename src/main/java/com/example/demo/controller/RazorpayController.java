@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -21,7 +24,8 @@ public class RazorpayController {
 
     @Autowired
     private final RazorpayService razorpayService;
-// this is the method to create order on Razorpay
+
+    // this is the method to create order on Razorpay
     @PostMapping("/createOrder")
     public ResponseEntity<?> orderCreation(@RequestBody StudentOrder studentOrder) {
         try {
@@ -32,4 +36,14 @@ public class RazorpayController {
         }
     }
 
+    @GetMapping("/getAllOrder")
+    public ResponseEntity<?> getAllOrders() {
+        try {
+            List<StudentOrder> studentOrderList = razorpayService.getAll();
+            return new ResponseEntity<>(studentOrderList, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
